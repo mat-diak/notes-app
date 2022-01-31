@@ -12,4 +12,13 @@ describe('NotesModel', () => {
     notesModel.addNote(milk);
     expect(notesModel.getNotes()).toEqual([milk])
   })
+
+  it('resets', () => {
+    const notesModel = new NotesModel();
+    let milk = 'Buy milk'
+    notesModel.addNote(milk);
+    notesModel.reset();
+    expect(notesModel.getNotes()).toEqual([])
+  })
+
 })
