@@ -7,13 +7,14 @@ const NotesModel = require('./notesModel')
 const NotesView = require('./notesView')
 
 describe('NotesView', () => {
-  it('', () => {
+  it('displays notes on the page', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    
     const notesModel = new NotesModel();
-    const notesView = new NotesView(notesModel);
     notesModel.addNote('Buy Milk');
     notesModel.addNote('Buy Butter');
-
-    document.body.innerHTML = fs.readFileSync('./index.html');
+    const notesView = new NotesView(notesModel);
+    notesView.displayNotes();
 
     expect(document.querySelectorAll('div.note').length).toBe(2);
   });

@@ -25,10 +25,36 @@
     }
   });
 
+  // notesView.js
+  var require_notesView = __commonJS({
+    "notesView.js"(exports, module) {
+      var NotesModel2 = require_notesModel();
+      var NotesView2 = class {
+        constructor(model) {
+          this.model = model;
+          this.mainContainerEl = document.querySelector("#main-container");
+        }
+        displayNotes() {
+          let notes = this.model.getNotes();
+          notes.forEach((note) => {
+            let element = document.createElement("div");
+            element.className = "note";
+            element.append(note);
+            this.mainContainerEl.append(element);
+          });
+        }
+      };
+      module.exports = NotesView2;
+    }
+  });
+
   // index.js
   console.log("Notes app is running.");
   var NotesModel = require_notesModel();
-  var notes = new NotesModel();
-  notes.addNote("Buy milk");
-  console.log(notes.getNotes());
+  var NotesView = require_notesView();
+  var notesModel = new NotesModel();
+  notesModel.addNote("Milk");
+  notesModel.addNote("Butter");
+  var notesView = new NotesView(notesModel);
+  notesView.displayNotes();
 })();
