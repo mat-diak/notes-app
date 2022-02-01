@@ -3,8 +3,17 @@ const NotesModel = require('./notesModel')
 class NotesView {
   constructor(model) {
     this.model = model;
-    this.mainContainerEl = document.querySelector('#main-container')
+    this.mainContainerEl = document.querySelector('#main-container');
+    this.buttonEl = document.querySelector('#save-note-button');
+    this.noteInputField = document.querySelector('#note-input');
+
+    this.buttonEl.addEventListener('click', () => {
+      this.model.addNote(this.noteInputField.value);
+      this.displayNotes();
+    })
   }
+
+
 
   displayNotes() {
     // get the list of notes from the model.
@@ -21,5 +30,9 @@ class NotesView {
     });
   }
 }
+
+// you should set an event listener in the NotesView constructor.
+// the model's addNote method should be called to save the new note on the model.
+// you should use the displayNotes method to reflect the changes on the page.
 
 module.exports = NotesView;

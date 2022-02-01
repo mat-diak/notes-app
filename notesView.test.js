@@ -19,4 +19,18 @@ describe('NotesView', () => {
     expect(document.querySelectorAll('div.note').length).toBe(2);
   });
 
+  it('displays notes on the page', () => {
+    document.body.innerHTML = fs.readFileSync('./index.html');
+    
+    const notesModel = new NotesModel();
+    const inputField = document.querySelector('#note-input')
+    const buttonSave = document.querySelector('#save-note-button');
+    const notesView = new NotesView(notesModel);
+    inputField.value = "Buy Milk";
+    buttonSave.click();
+    let note = document.querySelector('div.note').textContent;
+
+    expect(note).toBe('Buy Milk');
+  });
+
 });

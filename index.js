@@ -8,7 +8,5 @@ const NotesView = require('./notesView.js')
 // console.log(notes.getNotes());
 
 const notesModel = new NotesModel();
-notesModel.addNote('Milk')
-notesModel.addNote('Butter')
 const notesView = new NotesView(notesModel);
 notesView.displayNotes();
