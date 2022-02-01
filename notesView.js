@@ -9,6 +9,7 @@ class NotesView {
 
     this.buttonEl.addEventListener('click', () => {
       this.model.addNote(this.noteInputField.value);
+      this.noteInputField.value = ''
       this.displayNotes();
     })
   }
@@ -16,6 +17,9 @@ class NotesView {
 
 
   displayNotes() {
+    //remove all div.note
+    document.querySelectorAll('div.note').forEach (e=> e.remove() )
+    
     // get the list of notes from the model.
     // this is an array of notes
     let notes = this.model.getNotes();

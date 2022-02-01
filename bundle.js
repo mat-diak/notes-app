@@ -37,10 +37,12 @@
           this.noteInputField = document.querySelector("#note-input");
           this.buttonEl.addEventListener("click", () => {
             this.model.addNote(this.noteInputField.value);
+            this.noteInputField.value = "";
             this.displayNotes();
           });
         }
         displayNotes() {
+          document.querySelectorAll("div.note").forEach((e) => e.remove());
           let notes = this.model.getNotes();
           notes.forEach((note) => {
             let element = document.createElement("div");
